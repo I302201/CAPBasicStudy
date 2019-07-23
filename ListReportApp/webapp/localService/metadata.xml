@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="CollaborationConfigureService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="CollaborationType" EntityType="CollaborationConfigureService.CollaborationType"/>
+				<EntitySet Name="CollaborationTypeState" EntityType="CollaborationConfigureService.CollaborationTypeState"/>
+				<EntitySet Name="StatusProfile" EntityType="CollaborationConfigureService.StatusProfile"/>
+				<FunctionImport Name="SetInUse" m:HttpMethod="POST">
+					<Parameter Name="collaboration_type" Type="Edm.String" Mode="In" Nullable="true"/>
+				</FunctionImport>
+				<AssociationSet Name="CollaborationType_profile" Association="CollaborationConfigureService.CollaborationType_profile">
+					<End Role="CollaborationType" EntitySet="CollaborationType"/>
+					<End Role="StatusProfile" EntitySet="StatusProfile"/>
+				</AssociationSet>
+				<AssociationSet Name="CollaborationType_state" Association="CollaborationConfigureService.CollaborationType_state">
+					<End Role="CollaborationType" EntitySet="CollaborationType"/>
+					<End Role="CollaborationTypeState" EntitySet="CollaborationTypeState"/>
+				</AssociationSet>
+			</EntityContainer>
+			<EntityType Name="CollaborationType">
+				<Key>
+					<PropertyRef Name="collaboration_type"/>
+				</Key>
+				<Property Name="collaboration_type" Type="Edm.String" Nullable="false"/>
+				<Property Name="description" Type="Edm.String"/>
+				<NavigationProperty Name="profile" Relationship="CollaborationConfigureService.CollaborationType_profile" FromRole="CollaborationType"
+					ToRole="StatusProfile"/>
+				<NavigationProperty Name="state" Relationship="CollaborationConfigureService.CollaborationType_state" FromRole="CollaborationType"
+					ToRole="CollaborationTypeState"/>
+				<Property Name="create_date" Type="Edm.DateTime" sap:display-format="Date"/>
+				<Property Name="create_time" Type="Edm.Time"/>
+				<Property Name="profile_ID" Type="Edm.String"/>
+				<Property Name="state_state" Type="Edm.String"/>
+			</EntityType>
+			<EntityType Name="CollaborationTypeState">
+				<Key>
+					<PropertyRef Name="state"/>
+				</Key>
+				<Property Name="state" Type="Edm.String" Nullable="false"/>
+				<Property Name="description" Type="Edm.String"/>
+			</EntityType>
+			<EntityType Name="StatusProfile">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" Nullable="false"/>
+				<Property Name="description" Type="Edm.String"/>
+			</EntityType>
+			<Association Name="CollaborationType_profile">
+				<End Role="CollaborationType" Type="CollaborationConfigureService.CollaborationType" Multiplicity="*"/>
+				<End Role="StatusProfile" Type="CollaborationConfigureService.StatusProfile" Multiplicity="0..1"/>
+				<ReferentialConstraint>
+					<Principal Role="StatusProfile">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="CollaborationType">
+						<PropertyRef Name="profile_ID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CollaborationType_state">
+				<End Role="CollaborationType" Type="CollaborationConfigureService.CollaborationType" Multiplicity="*"/>
+				<End Role="CollaborationTypeState" Type="CollaborationConfigureService.CollaborationTypeState" Multiplicity="0..1"/>
+				<ReferentialConstraint>
+					<Principal Role="CollaborationTypeState">
+						<PropertyRef Name="state"/>
+					</Principal>
+					<Dependent Role="CollaborationType">
+						<PropertyRef Name="state_state"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Annotations Target="CollaborationConfigureService.CollaborationType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet">
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Label" String="General Info"/>
+										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInfo"/>
+									</Record>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="Label" String="Profile Info"/>
+										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#StatusProfile"/>
+									</Record>
+								</Collection>
+							</PropertyValue>
+							<PropertyValue Property="Label" String="Collaboration Type"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="GeneralInfo">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="collaboration_type"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="description"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="state_state"/>
+									<PropertyValue Property="label" String="State in facet"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Label" String="Gerneral Info"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="HeaderInfo">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="state_state"/>
+									<PropertyValue Property="Label" String="State1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Label" String="Header Info"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="StatusProfile">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="profile_ID"/>
+									<PropertyValue Property="Label" String="Profile in facet"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Label" String="Status Profile"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderInfo"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record Type="UI.HeaderInfoType">
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="description"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="collaboration_type"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="TypeName" String="Type"/>
+						<PropertyValue Property="TypeNamePlural" String="Types"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="Set in Use1"/>
+							<PropertyValue Property="Action" String="CollaborationConfigureService.CollaborationType/SetInUse"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="collaboration_type"/>
+							<PropertyValue Property="Label" String="Collaboration Type label"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="description"/>
+							<PropertyValue Property="Label" String="Collaboration Type Description"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="profile_ID"/>
+							<PropertyValue Property="Label" String="Status Profile"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="state_state"/>
+							<PropertyValue Property="Label" String="State"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/collaboration_type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+				<Annotation Term="Common.Label" String="Collaboration Type title"/>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Collaboration Type Description3"/>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/profile" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Status Profile"/>
+				<Annotation Term="Common.Text" Path="profile/description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="Label" String="Status Profile"/>
+						<PropertyValue Property="CollectionPath" String="StatusProfile"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="profile_ID"/>
+									<PropertyValue Property="ValueListProperty" String="ID"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/state" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="State"/>
+				<Annotation Term="Common.Text" Path="state/description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="Label" String="State"/>
+						<PropertyValue Property="CollectionPath" String="CollaborationTypeState"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="state_state"/>
+									<PropertyValue Property="ValueListProperty" String="state"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/profile_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="Status Profile"/>
+				<Annotation Term="Common.Text" Path="profile/description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="Label" String="Status Profile"/>
+						<PropertyValue Property="CollectionPath" String="StatusProfile"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="profile_ID"/>
+									<PropertyValue Property="ValueListProperty" String="ID"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationType/state_state" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="State"/>
+				<Annotation Term="Common.Text" Path="state/description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="Label" String="State"/>
+						<PropertyValue Property="CollectionPath" String="CollaborationTypeState"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="state_state"/>
+									<PropertyValue Property="ValueListProperty" String="state"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationTypeState/state" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="State"/>
+			</Annotations>
+			<Annotations Target="CollaborationConfigureService.CollaborationTypeState/description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.Label" String="StateDesc"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

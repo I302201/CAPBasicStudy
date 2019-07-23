@@ -1,0 +1,384 @@
+{
+  "namespace": "collaboration.configure",
+  "definitions": {
+    "CollaborationConfigureService": {
+      "kind": "service"
+    },
+    "CollaborationConfigureService.CollaborationType": {
+      "kind": "entity",
+      "@UI.Facets": [
+        {
+          "$Type": "UI.CollectionFacet",
+          "Facets": [
+            {
+              "$Type": "UI.ReferenceFacet",
+              "Label": "General Info",
+              "Target": "@UI.FieldGroup#GeneralInfo"
+            },
+            {
+              "$Type": "UI.ReferenceFacet",
+              "Label": "Profile Info",
+              "Target": "@UI.FieldGroup#StatusProfile"
+            }
+          ],
+          "Label": "Collaboration Type"
+        }
+      ],
+      "@UI.FieldGroup#GeneralInfo.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "collaboration_type"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "description"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "state_state"
+          },
+          "label": "State in facet"
+        }
+      ],
+      "@UI.FieldGroup#GeneralInfo.Label": "Gerneral Info",
+      "@UI.FieldGroup#HeaderInfo.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "state_state"
+          },
+          "Label": "State1"
+        }
+      ],
+      "@UI.FieldGroup#HeaderInfo.Label": "Header Info",
+      "@UI.FieldGroup#StatusProfile.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "profile_ID"
+          },
+          "Label": "Profile in facet"
+        }
+      ],
+      "@UI.FieldGroup#StatusProfile.Label": "Status Profile",
+      "@UI.HeaderFacets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Target": "@UI.FieldGroup#HeaderInfo"
+        }
+      ],
+      "@UI.HeaderInfo.Description.Value": {
+        "=": "description"
+      },
+      "@UI.HeaderInfo.Title.Value": {
+        "=": "collaboration_type"
+      },
+      "@UI.HeaderInfo.TypeName": "Type",
+      "@UI.HeaderInfo.TypeNamePlural": "Types",
+      "@UI.Identification": [
+        {
+          "$Type": "UI.DataFieldForAction",
+          "Label": "Set in Use1",
+          "Action": "CollaborationConfigureService.CollaborationType/SetInUse"
+        }
+      ],
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "collaboration_type"
+          },
+          "Label": "Collaboration Type label"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "description"
+          },
+          "Label": "Collaboration Type Description"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "profile_ID"
+          },
+          "Label": "Status Profile"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "state_state"
+          },
+          "Label": "State"
+        }
+      ],
+      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_COLLABORATIONTYPE",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "collaboration.configure.CollaborationType"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "collaboration_type": {
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Common.Label": "Collaboration Type title",
+          "@cds.persistence.name": "COLLABORATION_TYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@Common.Label": "Collaboration Type Description3",
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        },
+        "profile": {
+          "@Common.Label": "Status Profile",
+          "@Common.Text.$value": {
+            "=": "profile.description"
+          },
+          "@Common.Text.@UI.TextArrangement": {
+            "#": "TextOnly"
+          },
+          "@Common.ValueList.entity": "StatusProfile",
+          "@cds.persistence.name": "PROFILE",
+          "type": "cds.Association",
+          "target": "CollaborationConfigureService.StatusProfile",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "profile_ID"
+            }
+          ]
+        },
+        "state": {
+          "@Common.Label": "State",
+          "@Common.Text.$value": {
+            "=": "state.description"
+          },
+          "@Common.Text.@UI.TextArrangement": {
+            "#": "TextOnly"
+          },
+          "@Common.ValueList.entity": "CollaborationTypeState",
+          "@cds.persistence.name": "STATE",
+          "type": "cds.Association",
+          "target": "CollaborationConfigureService.CollaborationTypeState",
+          "keys": [
+            {
+              "ref": [
+                "state"
+              ],
+              "$generatedFieldName": "state_state"
+            }
+          ]
+        },
+        "create_date": {
+          "@cds.persistence.name": "CREATE_DATE",
+          "type": "cds.Date"
+        },
+        "create_time": {
+          "@cds.persistence.name": "CREATE_TIME",
+          "type": "cds.Time"
+        },
+        "profile_ID": {
+          "@Common.Label": "Status Profile",
+          "@Common.Text.$value": {
+            "=": "profile.description"
+          },
+          "@Common.Text.@UI.TextArrangement": {
+            "#": "TextOnly"
+          },
+          "@Common.ValueList.entity": "StatusProfile",
+          "@cds.persistence.name": "PROFILE_ID",
+          "@odata.foreignKey4": "profile",
+          "type": "cds.String"
+        },
+        "state_state": {
+          "@Common.Label": "State",
+          "@Common.Text.$value": {
+            "=": "state.description"
+          },
+          "@Common.Text.@UI.TextArrangement": {
+            "#": "TextOnly"
+          },
+          "@Common.ValueList.entity": "CollaborationTypeState",
+          "@cds.persistence.name": "STATE_STATE",
+          "@odata.foreignKey4": "state",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "CollaborationConfigureService.CollaborationTypeState": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_COLLABORATIONTYPESTATE",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "collaboration.configure.CollaborationTypeState"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "state": {
+          "@Common.Label": "State",
+          "@cds.persistence.name": "STATE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@Common.Label": "StateDesc",
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "CollaborationConfigureService.SetInUse": {
+      "kind": "action",
+      "params": {
+        "collaboration_type": {
+          "kind": "param",
+          "@cds.persistence.name": "COLLABORATION_TYPE",
+          "type": "cds.String"
+        }
+      }
+    },
+    "CollaborationConfigureService.StatusProfile": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_STATUSPROFILE",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "collaboration.configure.StatusProfile"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "ID": {
+          "@cds.persistence.name": "ID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "collaboration.configure.CollaborationType": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATION_CONFIGURE_COLLABORATIONTYPE",
+      "elements": {
+        "collaboration_type": {
+          "@cds.persistence.name": "COLLABORATION_TYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        },
+        "profile": {
+          "@cds.persistence.name": "PROFILE",
+          "type": "cds.Association",
+          "target": "collaboration.configure.StatusProfile",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "profile_ID"
+            }
+          ]
+        },
+        "state": {
+          "@cds.persistence.name": "STATE",
+          "type": "cds.Association",
+          "target": "collaboration.configure.CollaborationTypeState",
+          "keys": [
+            {
+              "ref": [
+                "state"
+              ],
+              "$generatedFieldName": "state_state"
+            }
+          ]
+        },
+        "create_date": {
+          "@cds.persistence.name": "CREATE_DATE",
+          "type": "cds.Date"
+        },
+        "create_time": {
+          "@cds.persistence.name": "CREATE_TIME",
+          "type": "cds.Time"
+        },
+        "profile_ID": {
+          "@cds.persistence.name": "PROFILE_ID",
+          "@odata.foreignKey4": "profile",
+          "type": "cds.String"
+        },
+        "state_state": {
+          "@cds.persistence.name": "STATE_STATE",
+          "@odata.foreignKey4": "state",
+          "type": "cds.String"
+        }
+      }
+    },
+    "collaboration.configure.CollaborationTypeState": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATION_CONFIGURE_COLLABORATIONTYPESTATE",
+      "elements": {
+        "state": {
+          "@cds.persistence.name": "STATE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        }
+      }
+    },
+    "collaboration.configure.StatusProfile": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATION_CONFIGURE_STATUSPROFILE",
+      "elements": {
+        "ID": {
+          "@cds.persistence.name": "ID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "description": {
+          "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        }
+      }
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.15.0"
+  },
+  "$version": "1.0",
+  "@sql_mapping": "plain"
+}

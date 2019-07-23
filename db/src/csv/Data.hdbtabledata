@@ -1,0 +1,37 @@
+{
+	"format_version": 1,
+	"imports": [
+    {
+      "target_table": "COLLABORATION_CONFIGURE_COLLABORATIONTYPESTATE"
+    , "source_data" : {
+        "data_type" : "CSV"
+      , "file_name" : "CollaborationTypeState.csv"
+      , "has_header" : true
+      }
+    , "import_settings" : {
+		"import_columns": ["STATE", "DESCRIPTION"],
+        "include_filter" : []
+      }
+    , "column_mappings" : {
+			"STATE": "state",
+			"DESCRIPTION": "description"
+      }
+    }
+  , {
+		"target_table": "COLLABORATION_CONFIGURE_STATUSPROFILE",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "StatusProfile.csv",
+			"has_header": true
+		},
+		"import_settings": {
+			"import_columns": ["ID", "DESCRIPTION"],
+			"include_filter": []
+		},
+		"column_mappings": {
+			"ID": "ID",
+			"DESCRIPTION": "description"
+		}
+	}
+	]
+}
