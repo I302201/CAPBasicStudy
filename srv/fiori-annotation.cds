@@ -63,7 +63,8 @@ annotate srv.CollaborationType with @(
   UI.FieldGroup#HeaderInfo: {
     Label: 'Header Info',
     Data: [
-      {$Type: 'UI.DataField', Value: state_state, Label : 'State1'}
+      {$Type: 'UI.DataField', Value: state_state, Label : 'State1'},
+      {$Type: 'UI.DataField', Value: version, Label : 'Version'}
     ]
   },
   
@@ -72,7 +73,7 @@ annotate srv.CollaborationType with @(
     Data: [
       {$Type: 'UI.DataField', Value: collaboration_type},
       {$Type: 'UI.DataField', Value: description},
-      {$Type: 'UI.DataField', Value: state_state, label: 'State in facet'},
+      {$Type: 'UI.DataField', Value: state_state, Label: 'State'},
     ]
   },
   

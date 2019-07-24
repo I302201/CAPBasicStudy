@@ -1,13 +1,13 @@
 namespace collaboration.configure;
+using managed from '@sap/cds/common';
 
-
-entity CollaborationType {
-  key collaboration_type: String;
+entity CollaborationType: managed {
+  key ID: UUID;
+  collaboration_type: String(4) not null;
+  version: Integer;
   description: String;
   profile : Association to StatusProfile;
   state  : Association to CollaborationTypeState;
-  create_date: Date;
-  create_time: Time;
 }
 
 entity StatusProfile {
