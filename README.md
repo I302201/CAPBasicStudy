@@ -1,2 +1,0 @@
-# CAPBasicStudy
-CAP Basic Study
