@@ -31,3 +31,6 @@ mergedManifestDescriptor.json
 APIExternalProducer.js
 .*/APIExternalProducer.js
 /mta_archives/
+# Database connection settings used in local development scenario
+db/default-env.json
+srv/src/main/resources/connection.properties
