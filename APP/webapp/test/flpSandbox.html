@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html>
-<!-- Copyright (c) 2015 SAP AG, All Rights Reserved -->
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>ListReportApp</title>
+	<title>APP</title>
 
 	<!-- Bootstrap the unified shell in sandbox mode for standalone usage.
 
@@ -33,21 +32,21 @@
                     }
                 }
             },
-			renderers: {
+            renderers: {
 				fiori2: {
 					componentData: {
 						config: {
-							rootIntent: "masterDetail-display",
 							search: "hidden"
 						}
 					}
 				}
 			},
 			applications: {
-				"masterDetail-display": {
-					"additionalInformation": "SAPUI5.Component=ListReportApp",
-					"applicationType": "URL",
-					"url": "../"
+				"CollaborationType-display": {
+					additionalInformation: "SAPUI5.Component=APP",
+					applicationType: "URL",
+					url: "../",
+					description: "APP"
 				}
 			}
 		};
@@ -58,27 +57,17 @@
 	<!-- Bootstrap the UI5 core library -->
 	<script id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-			data-sap-ui-libs="sap.m, sap.ushell"
+			data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"ListReportApp": "../", "sap.ui.demo.masterdetail.service": "./service/"}'
-			data-sap-ui-frameOptions='allow'> // NON-SECURE setting for testing environment
+			data-sap-ui-resourceroots='{"APP": "../"}'
+			data-sap-ui-frameOptions='allow'> 	// NON-SECURE setting for testing environment
 	</script>
 
 	<script type="text/javascript">
 		sap.ui.getCore().attachInit(function() {
-	        //Fake LREP
-	        jQuery.sap.require("sap.ui.fl.FakeLrepConnector");
-	        sap.ui.fl.FakeLrepConnector.enableFakeConnector("fakeLRep.json");
-			sap.ui.require([
-				"ListReportApp/localService/mockserver"
-			], function (server) {
-				// set up test service for local testing
-				server.init();
-
-				// initialize the ushell sandbox component
-				sap.ushell.Container.createRenderer().placeAt("content");
-			});
+			// initialize the ushell sandbox component
+			sap.ushell.Container.createRenderer().placeAt("content");
 		});
 	</script>
 

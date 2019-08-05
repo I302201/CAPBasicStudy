@@ -6,6 +6,8 @@ annotate srv.CollaborationType with {
 	@Common.FieldControl: #Mandatory;
   description
     @title: 'Collaboration Type Description3';
+  ProfitCenter
+    @title: 'Profit Center';
   profile
     @Common: {
       Label : 'Status Profile',
@@ -25,6 +27,15 @@ annotate srv.CollaborationTypeState with {
     @title: 'State';
   description
 	@title: 'StateDesc';
+};
+
+annotate srv.EnterpriseProjectRemote with {
+  ProfitCenter
+    @title: 'Profit Center';
+  Project
+	@title: 'Project Number';
+  ProjectDescription
+	@title: 'Project Desc';	
 };
 
 annotate srv.CollaborationType with @(
@@ -55,9 +66,26 @@ annotate srv.CollaborationType with @(
       Facets: [
         { $Type: 'UI.ReferenceFacet', Label: 'General Info', Target: '@UI.FieldGroup#GeneralInfo' },
         { $Type: 'UI.ReferenceFacet', Label: 'Profile Info', Target: '@UI.FieldGroup#StatusProfile' },
+//        { $Type: 'UI.ReferenceFacet', Label: 'Projects', Target: '@UI.LineItem#Projects' },
       ],
       Label:'Collaboration Type',
+    },
+    
+    {
+        $Type: 'UI.ReferenceFacet', Label: 'Projects', Target: 'projects/@UI.LineItem#Project',
+    },
+    {
+        $Type: 'UI.ReferenceFacet', Label: 'Descriptions', Target: 'descriptions/@UI.LineItem#Description',
+    },    
+/*    
+    {
+      $Type:'UI.CollectionFacet',
+      Facets: [
+        { $Type: 'UI.ReferenceFacet', Label: 'Desc', Target: 'descriptions/@UI.LineItem#Desc' },
+      ],      
+      Label:'Desc',
     }
+*/    
     ],
     
   UI.FieldGroup#HeaderInfo: {
@@ -74,6 +102,7 @@ annotate srv.CollaborationType with @(
       {$Type: 'UI.DataField', Value: collaboration_type},
       {$Type: 'UI.DataField', Value: description},
       {$Type: 'UI.DataField', Value: state_state, Label: 'State'},
+      {$Type: 'UI.DataField', Value: ProfitCenter, Label: 'EPPM Profit Center'},
     ]
   },
   
@@ -82,5 +111,31 @@ annotate srv.CollaborationType with @(
     Data: [
       {$Type: 'UI.DataField', Value: profile_ID, Label: 'Profile in facet'}
     ]
-  }  
+  },
+ /*
+  UI.LineItem#Projects: [
+      {$Type: 'UI.DataField', Value: projects.Project, Label: 'Project ID'},
+      {$Type: 'UI.DataField', Value: projects.ProjectDescription, Label: 'Project Description'}, 
+    ],
+  UI.LineItem#Desc: [
+      {$Type: 'UI.DataField', Value: descriptions.lan, Label: 'Language'},
+      {$Type: 'UI.DataField', Value: descriptions.desc, Label: 'Description'}, 
+    ]    
+    */
 );
+
+
+annotate srv.EnterpriseProjectRemote with @(
+  UI.LineItem#Project: [ 
+      {$Type: 'UI.DataField', Value: Project},
+      {$Type: 'UI.DataField', Value: ProjectDescription}, 
+      {$Type: 'UI.DataField', Value: ProfitCenter}, 
+  ],
+);  
+
+annotate srv.CollaborationTypeDesc with @(
+  UI.LineItem#Description: [ 
+      {$Type: 'UI.DataField', Value: lan},
+      {$Type: 'UI.DataField', Value: desc}, 
+  ],
+);  

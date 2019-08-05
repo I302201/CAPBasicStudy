@@ -19,6 +19,7 @@ modules:
 
     properties:
       ALLOW_MOCKED_AUTH_HEADER: true   # Allows fetching destinations w/o uaa. Don't use in production!
+      
     provides:
       - name: srv_api
         properties:
@@ -31,9 +32,36 @@ modules:
       - name: CollaborationType-dest
       - name: CollaborationType-uaa
 
-  - name: ListReportApp
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+  - name: APP
     type: html5
-    path: ListReportApp
+    path: APP
     parameters:
        disk-quota: 256M
        memory: 256M

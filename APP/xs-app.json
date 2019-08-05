@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/ListReportApp/test/flpSandbox.html",
+  "welcomeFile": "/APP/test/flpSandbox.html",
   "authenticationMethod": "route",
   "logout": {
     "logoutEndpoint": "/do/logout"
@@ -13,7 +13,7 @@
       "csrfProtection": false
     },
     {
-      "source": "^/ListReportApp/(.*)$",
+      "source": "^/APP/(.*)$",
       "target": "$1",
       "localDir": "webapp"
     }

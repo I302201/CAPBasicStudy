@@ -1,449 +1,6 @@
 {
   "namespace": "collaboration.configure",
   "definitions": {
-    "API_ENTERPRISE_PROJECT_SRV.A_EntProjectElementJVAType": {
-      "kind": "entity",
-      "@cds.persistence.name": "API_ENTERPRISE_PROJECT_SRV_A_ENTPROJECTELEMENTJVATYPE",
-      "@cds.persistence.skip": true,
-      "elements": {
-        "ProjectElementUUID": {
-          "@cds.persistence.name": "PROJECTELEMENTUUID",
-          "key": true,
-          "type": "cds.UUID"
-        },
-        "ProjectUUID": {
-          "@cds.persistence.name": "PROJECTUUID",
-          "type": "cds.UUID"
-        },
-        "JointVenture": {
-          "@cds.persistence.name": "JOINTVENTURE",
-          "type": "cds.String",
-          "length": 6
-        },
-        "JointVentureCostRecoveryCode": {
-          "@cds.persistence.name": "JOINTVENTURECOSTRECOVERYCODE",
-          "type": "cds.String",
-          "length": 2
-        },
-        "JointVentureEquityType": {
-          "@cds.persistence.name": "JOINTVENTUREEQUITYTYPE",
-          "type": "cds.String",
-          "length": 3
-        },
-        "JntVntrProjectType": {
-          "@cds.persistence.name": "JNTVNTRPROJECTTYPE",
-          "type": "cds.String",
-          "length": 4
-        },
-        "JntIntrstBillgClass": {
-          "@cds.persistence.name": "JNTINTRSTBILLGCLASS",
-          "type": "cds.String",
-          "length": 3
-        },
-        "JntIntrstBillgSubClass": {
-          "@cds.persistence.name": "JNTINTRSTBILLGSUBCLASS",
-          "type": "cds.String",
-          "length": 5
-        },
-        "ProjectLastChangedDateTime": {
-          "@cds.persistence.name": "PROJECTLASTCHANGEDDATETIME",
-          "type": "cds.Timestamp"
-        }
-      }
-    },
-    "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectElementType": {
-      "kind": "entity",
-      "@cds.persistence.name": "API_ENTERPRISE_PROJECT_SRV_A_ENTERPRISEPROJECTELEMENTTYPE",
-      "@cds.persistence.skip": true,
-      "elements": {
-        "ProjectElementUUID": {
-          "@cds.persistence.name": "PROJECTELEMENTUUID",
-          "key": true,
-          "type": "cds.UUID"
-        },
-        "ProjectElement": {
-          "@cds.persistence.name": "PROJECTELEMENT",
-          "type": "cds.String",
-          "length": 24
-        },
-        "WBSElementInternalID": {
-          "@cds.persistence.name": "WBSELEMENTINTERNALID",
-          "type": "cds.String",
-          "length": 8
-        },
-        "ProjectUUID": {
-          "@cds.persistence.name": "PROJECTUUID",
-          "type": "cds.UUID"
-        },
-        "ProjectElementDescription": {
-          "@cds.persistence.name": "PROJECTELEMENTDESCRIPTION",
-          "type": "cds.String",
-          "length": 40
-        },
-        "ParentObjectUUID": {
-          "@cds.persistence.name": "PARENTOBJECTUUID",
-          "type": "cds.UUID"
-        },
-        "ProcessingStatus": {
-          "@cds.persistence.name": "PROCESSINGSTATUS",
-          "type": "cds.String",
-          "length": 2
-        },
-        "SortingNumber": {
-          "@cds.persistence.name": "SORTINGNUMBER",
-          "type": "cds.String",
-          "length": 5
-        },
-        "PlannedStartDate": {
-          "@cds.persistence.name": "PLANNEDSTARTDATE",
-          "type": "cds.Date"
-        },
-        "PlannedEndDate": {
-          "@cds.persistence.name": "PLANNEDENDDATE",
-          "type": "cds.Date"
-        },
-        "ResponsibleCostCenter": {
-          "@cds.persistence.name": "RESPONSIBLECOSTCENTER",
-          "type": "cds.String",
-          "length": 10
-        },
-        "CompanyCode": {
-          "@cds.persistence.name": "COMPANYCODE",
-          "type": "cds.String",
-          "length": 4
-        },
-        "ProfitCenter": {
-          "@cds.persistence.name": "PROFITCENTER",
-          "type": "cds.String",
-          "length": 10
-        },
-        "FunctionalArea": {
-          "@cds.persistence.name": "FUNCTIONALAREA",
-          "type": "cds.String",
-          "length": 16
-        },
-        "ControllingArea": {
-          "@cds.persistence.name": "CONTROLLINGAREA",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Plant": {
-          "@cds.persistence.name": "PLANT",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Location": {
-          "@cds.persistence.name": "LOCATION",
-          "type": "cds.String",
-          "length": 10
-        },
-        "FactoryCalendar": {
-          "@cds.persistence.name": "FACTORYCALENDAR",
-          "type": "cds.String",
-          "length": 2
-        },
-        "CostingSheet": {
-          "@cds.persistence.name": "COSTINGSHEET",
-          "type": "cds.String",
-          "length": 6
-        },
-        "InvestmentProfile": {
-          "@cds.persistence.name": "INVESTMENTPROFILE",
-          "type": "cds.String",
-          "length": 6
-        },
-        "WBSIsStatisticalWBSElement": {
-          "@cds.persistence.name": "WBSISSTATISTICALWBSELEMENT",
-          "type": "cds.Boolean"
-        },
-        "CostCenter": {
-          "@cds.persistence.name": "COSTCENTER",
-          "type": "cds.String",
-          "length": 10
-        },
-        "CreatedByUser": {
-          "@cds.persistence.name": "CREATEDBYUSER",
-          "type": "cds.String",
-          "length": 12
-        },
-        "CreationDateTime": {
-          "@cds.persistence.name": "CREATIONDATETIME",
-          "type": "cds.Timestamp"
-        },
-        "LastChangeDateTime": {
-          "@cds.persistence.name": "LASTCHANGEDATETIME",
-          "type": "cds.Timestamp"
-        },
-        "LastChangedByUser": {
-          "@cds.persistence.name": "LASTCHANGEDBYUSER",
-          "type": "cds.String",
-          "length": 12
-        },
-        "ProjectLastChangedDateTime": {
-          "@cds.persistence.name": "PROJECTLASTCHANGEDDATETIME",
-          "type": "cds.Timestamp"
-        },
-        "to_EnterpriseProject": {
-          "@cds.persistence.name": "TO_ENTERPRISEPROJECT",
-          "type": "cds.Association",
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectType",
-          "keys": [
-            {
-              "ref": [
-                "ProjectUUID"
-              ],
-              "$generatedFieldName": "to_EnterpriseProject_ProjectUUID"
-            }
-          ]
-        },
-        "to_EntProjectElementJVA": {
-          "@cds.persistence.name": "TO_ENTPROJECTELEMENTJVA",
-          "type": "cds.Association",
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EntProjectElementJVAType",
-          "keys": [
-            {
-              "ref": [
-                "ProjectElementUUID"
-              ],
-              "$generatedFieldName": "to_EntProjectElementJVA_ProjectElementUUID"
-            }
-          ]
-        },
-        "to_ParentProjElement": {
-          "@cds.persistence.name": "TO_PARENTPROJELEMENT",
-          "type": "cds.Association",
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectElementType",
-          "keys": [
-            {
-              "ref": [
-                "ProjectElementUUID"
-              ],
-              "$generatedFieldName": "to_ParentProjElement_ProjectElementUUID"
-            }
-          ]
-        },
-        "to_SubProjElement": {
-          "@cds.persistence.name": "TO_SUBPROJELEMENT",
-          "type": "cds.Association",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectElementType",
-          "keys": [
-            {
-              "ref": [
-                "ProjectElementUUID"
-              ],
-              "$generatedFieldName": "to_SubProjElement_ProjectElementUUID"
-            }
-          ]
-        },
-        "to_EnterpriseProject_ProjectUUID": {
-          "@cds.persistence.name": "TO_ENTERPRISEPROJECT_PROJECTUUID",
-          "@odata.foreignKey4": "to_EnterpriseProject",
-          "type": "cds.UUID"
-        },
-        "to_EntProjectElementJVA_ProjectElementUUID": {
-          "@cds.persistence.name": "TO_ENTPROJECTELEMENTJVA_PROJECTELEMENTUUID",
-          "@odata.foreignKey4": "to_EntProjectElementJVA",
-          "type": "cds.UUID"
-        },
-        "to_ParentProjElement_ProjectElementUUID": {
-          "@cds.persistence.name": "TO_PARENTPROJELEMENT_PROJECTELEMENTUUID",
-          "@odata.foreignKey4": "to_ParentProjElement",
-          "type": "cds.UUID"
-        },
-        "to_SubProjElement_ProjectElementUUID": {
-          "@cds.persistence.name": "TO_SUBPROJELEMENT_PROJECTELEMENTUUID",
-          "@odata.foreignKey4": "to_SubProjElement",
-          "type": "cds.UUID"
-        }
-      }
-    },
-    "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectJVAType": {
-      "kind": "entity",
-      "@cds.persistence.name": "API_ENTERPRISE_PROJECT_SRV_A_ENTERPRISEPROJECTJVATYPE",
-      "@cds.persistence.skip": true,
-      "elements": {
-        "ProjectUUID": {
-          "@cds.persistence.name": "PROJECTUUID",
-          "key": true,
-          "type": "cds.UUID"
-        },
-        "JointVenture": {
-          "@cds.persistence.name": "JOINTVENTURE",
-          "type": "cds.String",
-          "length": 6
-        },
-        "JointVentureCostRecoveryCode": {
-          "@cds.persistence.name": "JOINTVENTURECOSTRECOVERYCODE",
-          "type": "cds.String",
-          "length": 2
-        },
-        "JointVentureEquityType": {
-          "@cds.persistence.name": "JOINTVENTUREEQUITYTYPE",
-          "type": "cds.String",
-          "length": 3
-        },
-        "JntVntrProjectType": {
-          "@cds.persistence.name": "JNTVNTRPROJECTTYPE",
-          "type": "cds.String",
-          "length": 4
-        },
-        "JntIntrstBillgClass": {
-          "@cds.persistence.name": "JNTINTRSTBILLGCLASS",
-          "type": "cds.String",
-          "length": 3
-        },
-        "JntIntrstBillgSubClass": {
-          "@cds.persistence.name": "JNTINTRSTBILLGSUBCLASS",
-          "type": "cds.String",
-          "length": 5
-        },
-        "ProjectLastChangedDateTime": {
-          "@cds.persistence.name": "PROJECTLASTCHANGEDDATETIME",
-          "type": "cds.Timestamp"
-        }
-      }
-    },
-    "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectType": {
-      "kind": "entity",
-      "@cds.persistence.name": "API_ENTERPRISE_PROJECT_SRV_A_ENTERPRISEPROJECTTYPE",
-      "@cds.persistence.skip": true,
-      "elements": {
-        "ProjectUUID": {
-          "@cds.persistence.name": "PROJECTUUID",
-          "key": true,
-          "type": "cds.UUID"
-        },
-        "ProjectInternalID": {
-          "@cds.persistence.name": "PROJECTINTERNALID",
-          "type": "cds.String",
-          "length": 24
-        },
-        "Project": {
-          "@cds.persistence.name": "PROJECT",
-          "type": "cds.String",
-          "length": 24
-        },
-        "ProjectDescription": {
-          "@cds.persistence.name": "PROJECTDESCRIPTION",
-          "type": "cds.String",
-          "length": 40
-        },
-        "EnterpriseProjectType": {
-          "@cds.persistence.name": "ENTERPRISEPROJECTTYPE",
-          "type": "cds.String",
-          "length": 2
-        },
-        "PriorityCode": {
-          "@cds.persistence.name": "PRIORITYCODE",
-          "type": "cds.String",
-          "length": 3
-        },
-        "ProjectStartDate": {
-          "@cds.persistence.name": "PROJECTSTARTDATE",
-          "type": "cds.Date"
-        },
-        "ProjectEndDate": {
-          "@cds.persistence.name": "PROJECTENDDATE",
-          "type": "cds.Date"
-        },
-        "ProcessingStatus": {
-          "@cds.persistence.name": "PROCESSINGSTATUS",
-          "type": "cds.String",
-          "length": 2
-        },
-        "ResponsibleCostCenter": {
-          "@cds.persistence.name": "RESPONSIBLECOSTCENTER",
-          "type": "cds.String",
-          "length": 10
-        },
-        "ProfitCenter": {
-          "@cds.persistence.name": "PROFITCENTER",
-          "type": "cds.String",
-          "length": 10
-        },
-        "ProjectManagerUUID": {
-          "@cds.persistence.name": "PROJECTMANAGERUUID",
-          "type": "cds.UUID"
-        },
-        "ProjectProfileCode": {
-          "@cds.persistence.name": "PROJECTPROFILECODE",
-          "type": "cds.String",
-          "length": 7
-        },
-        "FunctionalArea": {
-          "@cds.persistence.name": "FUNCTIONALAREA",
-          "type": "cds.String",
-          "length": 16
-        },
-        "CompanyCode": {
-          "@cds.persistence.name": "COMPANYCODE",
-          "type": "cds.String",
-          "length": 4
-        },
-        "ControllingArea": {
-          "@cds.persistence.name": "CONTROLLINGAREA",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Plant": {
-          "@cds.persistence.name": "PLANT",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Location": {
-          "@cds.persistence.name": "LOCATION",
-          "type": "cds.String",
-          "length": 10
-        },
-        "LastChangeDateTime": {
-          "@cds.persistence.name": "LASTCHANGEDATETIME",
-          "type": "cds.Timestamp"
-        },
-        "to_EnterpriseProjectElement": {
-          "@cds.persistence.name": "TO_ENTERPRISEPROJECTELEMENT",
-          "type": "cds.Association",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectElementType",
-          "on": [
-            {
-              "ref": [
-                "to_EnterpriseProjectElement",
-                "ProjectUUID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ProjectUUID"
-              ]
-            }
-          ]
-        },
-        "to_EnterpriseProjectJVA": {
-          "@cds.persistence.name": "TO_ENTERPRISEPROJECTJVA",
-          "type": "cds.Association",
-          "target": "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectJVAType",
-          "keys": [
-            {
-              "ref": [
-                "ProjectUUID"
-              ],
-              "$generatedFieldName": "to_EnterpriseProjectJVA_ProjectUUID"
-            }
-          ]
-        },
-        "to_EnterpriseProjectJVA_ProjectUUID": {
-          "@cds.persistence.name": "TO_ENTERPRISEPROJECTJVA_PROJECTUUID",
-          "@odata.foreignKey4": "to_EnterpriseProjectJVA",
-          "type": "cds.UUID"
-        }
-      }
-    },
     "CollaborationConfigureService": {
       "kind": "service"
     },
@@ -465,6 +22,16 @@
             }
           ],
           "Label": "Collaboration Type"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Projects",
+          "Target": "projects/@UI.LineItem#Project"
+        },
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Descriptions",
+          "Target": "descriptions/@UI.LineItem#Description"
         }
       ],
       "@UI.FieldGroup#GeneralInfo.Data": [
@@ -486,6 +53,13 @@
             "=": "state_state"
           },
           "Label": "State"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ProfitCenter"
+          },
+          "Label": "EPPM Profit Center"
         }
       ],
       "@UI.FieldGroup#GeneralInfo.Label": "Gerneral Info",
@@ -654,6 +228,56 @@
           "length": 4,
           "notNull": true
         },
+        "ProfitCenter": {
+          "@Common.Label": "Profit Center",
+          "@cds.persistence.name": "PROFITCENTER",
+          "type": "cds.String",
+          "length": 10
+        },
+        "projects": {
+          "@cds.persistence.name": "PROJECTS",
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CollaborationConfigureService.EnterpriseProjectRemote",
+          "on": [
+            {
+              "ref": [
+                "projects",
+                "ProfitCenter"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ProfitCenter"
+              ]
+            }
+          ]
+        },
+        "descriptions": {
+          "@cds.persistence.name": "DESCRIPTIONS",
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CollaborationConfigureService.CollaborationTypeDesc",
+          "on": [
+            {
+              "ref": [
+                "descriptions",
+                "collaboration_type"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "collaboration_type"
+              ]
+            }
+          ]
+        },
         "version": {
           "@cds.persistence.name": "VERSION",
           "type": "cds.Integer"
@@ -734,6 +358,53 @@
       },
       "$syntax": "projection"
     },
+    "CollaborationConfigureService.CollaborationTypeDesc": {
+      "kind": "entity",
+      "@UI.LineItem#Description": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "lan"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "desc"
+          }
+        }
+      ],
+      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_COLLABORATIONTYPEDESC",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "collaboration.configure.CollaborationTypeDesc"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "lan": {
+          "@cds.persistence.name": "LAN",
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "collaboration_type": {
+          "@cds.persistence.name": "COLLABORATION_TYPE",
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "notNull": true
+        },
+        "desc": {
+          "@cds.persistence.name": "DESC",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
     "CollaborationConfigureService.CollaborationTypeState": {
       "kind": "entity",
       "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_COLLABORATIONTYPESTATE",
@@ -761,114 +432,60 @@
       },
       "$syntax": "projection"
     },
-    "CollaborationConfigureService.EnterpriseProject": {
+    "CollaborationConfigureService.EnterpriseProjectRemote": {
       "kind": "entity",
-      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_ENTERPRISEPROJECT",
-      "@cds.persistence.skip": true,
+      "@UI.LineItem#Project": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Project"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ProjectDescription"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ProfitCenter"
+          }
+        }
+      ],
+      "@cds.persistence.name": "COLLABORATIONCONFIGURESERVICE_ENTERPRISEPROJECTREMOTE",
       "query": {
         "SELECT": {
           "from": {
             "ref": [
-              "API_ENTERPRISE_PROJECT_SRV.A_EnterpriseProjectType"
+              "collaboration.configure.EnterpriseProjectRemote"
             ]
-          },
-          "excluding": [
-            "to_SupplierCompany",
-            "to_SupplierPurchasingOrg"
-          ]
+          }
         }
       },
       "elements": {
         "ProjectUUID": {
           "@cds.persistence.name": "PROJECTUUID",
           "key": true,
-          "type": "cds.UUID"
-        },
-        "ProjectInternalID": {
-          "@cds.persistence.name": "PROJECTINTERNALID",
-          "type": "cds.String",
-          "length": 24
-        },
-        "Project": {
-          "@cds.persistence.name": "PROJECT",
-          "type": "cds.String",
-          "length": 24
-        },
-        "ProjectDescription": {
-          "@cds.persistence.name": "PROJECTDESCRIPTION",
-          "type": "cds.String",
-          "length": 40
-        },
-        "EnterpriseProjectType": {
-          "@cds.persistence.name": "ENTERPRISEPROJECTTYPE",
-          "type": "cds.String",
-          "length": 2
-        },
-        "PriorityCode": {
-          "@cds.persistence.name": "PRIORITYCODE",
-          "type": "cds.String",
-          "length": 3
-        },
-        "ProjectStartDate": {
-          "@cds.persistence.name": "PROJECTSTARTDATE",
-          "type": "cds.Date"
-        },
-        "ProjectEndDate": {
-          "@cds.persistence.name": "PROJECTENDDATE",
-          "type": "cds.Date"
-        },
-        "ProcessingStatus": {
-          "@cds.persistence.name": "PROCESSINGSTATUS",
-          "type": "cds.String",
-          "length": 2
-        },
-        "ResponsibleCostCenter": {
-          "@cds.persistence.name": "RESPONSIBLECOSTCENTER",
           "type": "cds.String",
           "length": 10
         },
         "ProfitCenter": {
+          "@Common.Label": "Profit Center",
           "@cds.persistence.name": "PROFITCENTER",
           "type": "cds.String",
           "length": 10
         },
-        "ProjectManagerUUID": {
-          "@cds.persistence.name": "PROJECTMANAGERUUID",
-          "type": "cds.UUID"
+        "Project": {
+          "@Common.Label": "Project Number",
+          "@cds.persistence.name": "PROJECT",
+          "type": "cds.String"
         },
-        "ProjectProfileCode": {
-          "@cds.persistence.name": "PROJECTPROFILECODE",
-          "type": "cds.String",
-          "length": 7
-        },
-        "FunctionalArea": {
-          "@cds.persistence.name": "FUNCTIONALAREA",
-          "type": "cds.String",
-          "length": 16
-        },
-        "CompanyCode": {
-          "@cds.persistence.name": "COMPANYCODE",
-          "type": "cds.String",
-          "length": 4
-        },
-        "ControllingArea": {
-          "@cds.persistence.name": "CONTROLLINGAREA",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Plant": {
-          "@cds.persistence.name": "PLANT",
-          "type": "cds.String",
-          "length": 4
-        },
-        "Location": {
-          "@cds.persistence.name": "LOCATION",
-          "type": "cds.String",
-          "length": 10
-        },
-        "LastChangeDateTime": {
-          "@cds.persistence.name": "LASTCHANGEDATETIME",
-          "type": "cds.Timestamp"
+        "ProjectDescription": {
+          "@Common.Label": "Project Desc",
+          "@cds.persistence.name": "PROJECTDESCRIPTION",
+          "type": "cds.String"
         }
       },
       "$syntax": "projection"
@@ -1040,6 +657,55 @@
           "length": 4,
           "notNull": true
         },
+        "ProfitCenter": {
+          "@cds.persistence.name": "PROFITCENTER",
+          "type": "cds.String",
+          "length": 10
+        },
+        "projects": {
+          "@cds.persistence.name": "PROJECTS",
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "collaboration.configure.EnterpriseProjectRemote",
+          "on": [
+            {
+              "ref": [
+                "projects",
+                "ProfitCenter"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ProfitCenter"
+              ]
+            }
+          ]
+        },
+        "descriptions": {
+          "@cds.persistence.name": "DESCRIPTIONS",
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "collaboration.configure.CollaborationTypeDesc",
+          "on": [
+            {
+              "ref": [
+                "descriptions",
+                "collaboration_type"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "collaboration_type"
+              ]
+            }
+          ]
+        },
         "version": {
           "@cds.persistence.name": "VERSION",
           "type": "cds.Integer"
@@ -1086,6 +752,29 @@
         }
       }
     },
+    "collaboration.configure.CollaborationTypeDesc": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATION_CONFIGURE_COLLABORATIONTYPEDESC",
+      "elements": {
+        "lan": {
+          "@cds.persistence.name": "LAN",
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "collaboration_type": {
+          "@cds.persistence.name": "COLLABORATION_TYPE",
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "notNull": true
+        },
+        "desc": {
+          "@cds.persistence.name": "DESC",
+          "type": "cds.String"
+        }
+      }
+    },
     "collaboration.configure.CollaborationTypeState": {
       "kind": "entity",
       "@cds.persistence.name": "COLLABORATION_CONFIGURE_COLLABORATIONTYPESTATE",
@@ -1097,6 +786,31 @@
         },
         "description": {
           "@cds.persistence.name": "DESCRIPTION",
+          "type": "cds.String"
+        }
+      }
+    },
+    "collaboration.configure.EnterpriseProjectRemote": {
+      "kind": "entity",
+      "@cds.persistence.name": "COLLABORATION_CONFIGURE_ENTERPRISEPROJECTREMOTE",
+      "elements": {
+        "ProjectUUID": {
+          "@cds.persistence.name": "PROJECTUUID",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "ProfitCenter": {
+          "@cds.persistence.name": "PROFITCENTER",
+          "type": "cds.String",
+          "length": 10
+        },
+        "Project": {
+          "@cds.persistence.name": "PROJECT",
+          "type": "cds.String"
+        },
+        "ProjectDescription": {
+          "@cds.persistence.name": "PROJECTDESCRIPTION",
           "type": "cds.String"
         }
       }

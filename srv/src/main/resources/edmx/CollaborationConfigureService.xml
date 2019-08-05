@@ -13,11 +13,21 @@
     <Schema Namespace="CollaborationConfigureService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
       <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
         <EntitySet Name="CollaborationType" EntityType="CollaborationConfigureService.CollaborationType"/>
+        <EntitySet Name="CollaborationTypeDesc" EntityType="CollaborationConfigureService.CollaborationTypeDesc"/>
         <EntitySet Name="CollaborationTypeState" EntityType="CollaborationConfigureService.CollaborationTypeState"/>
+        <EntitySet Name="EnterpriseProjectRemote" EntityType="CollaborationConfigureService.EnterpriseProjectRemote"/>
         <EntitySet Name="StatusProfile" EntityType="CollaborationConfigureService.StatusProfile"/>
         <FunctionImport Name="SetInUse" m:HttpMethod="POST">
           <Parameter Name="ID" Type="Edm.Guid" Mode="In" Nullable="true"/>
         </FunctionImport>
+        <AssociationSet Name="CollaborationType_projects" Association="CollaborationConfigureService.CollaborationType_projects">
+          <End Role="CollaborationType" EntitySet="CollaborationType"/>
+          <End Role="EnterpriseProjectRemote" EntitySet="EnterpriseProjectRemote"/>
+        </AssociationSet>
+        <AssociationSet Name="CollaborationType_descriptions" Association="CollaborationConfigureService.CollaborationType_descriptions">
+          <End Role="CollaborationType" EntitySet="CollaborationType"/>
+          <End Role="CollaborationTypeDesc" EntitySet="CollaborationTypeDesc"/>
+        </AssociationSet>
         <AssociationSet Name="CollaborationType_profile" Association="CollaborationConfigureService.CollaborationType_profile">
           <End Role="CollaborationType" EntitySet="CollaborationType"/>
           <End Role="StatusProfile" EntitySet="StatusProfile"/>
@@ -37,12 +47,24 @@
         <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
         <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="collaboration_type" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="ProfitCenter" Type="Edm.String" MaxLength="10"/>
+        <NavigationProperty Name="projects" Relationship="CollaborationConfigureService.CollaborationType_projects" FromRole="CollaborationType" ToRole="EnterpriseProjectRemote"/>
+        <NavigationProperty Name="descriptions" Relationship="CollaborationConfigureService.CollaborationType_descriptions" FromRole="CollaborationType" ToRole="CollaborationTypeDesc"/>
         <Property Name="version" Type="Edm.Int32"/>
         <Property Name="description" Type="Edm.String"/>
         <NavigationProperty Name="profile" Relationship="CollaborationConfigureService.CollaborationType_profile" FromRole="CollaborationType" ToRole="StatusProfile"/>
         <NavigationProperty Name="state" Relationship="CollaborationConfigureService.CollaborationType_state" FromRole="CollaborationType" ToRole="CollaborationTypeState"/>
         <Property Name="profile_ID" Type="Edm.String"/>
         <Property Name="state_state" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="CollaborationTypeDesc">
+        <Key>
+          <PropertyRef Name="lan"/>
+          <PropertyRef Name="collaboration_type"/>
+        </Key>
+        <Property Name="lan" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="collaboration_type" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="desc" Type="Edm.String"/>
       </EntityType>
       <EntityType Name="CollaborationTypeState">
         <Key>
@@ -51,6 +73,15 @@
         <Property Name="state" Type="Edm.String" Nullable="false"/>
         <Property Name="description" Type="Edm.String"/>
       </EntityType>
+      <EntityType Name="EnterpriseProjectRemote">
+        <Key>
+          <PropertyRef Name="ProjectUUID"/>
+        </Key>
+        <Property Name="ProjectUUID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="ProfitCenter" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Project" Type="Edm.String"/>
+        <Property Name="ProjectDescription" Type="Edm.String"/>
+      </EntityType>
       <EntityType Name="StatusProfile">
         <Key>
           <PropertyRef Name="ID"/>
@@ -58,6 +89,16 @@
         <Property Name="ID" Type="Edm.String" Nullable="false"/>
         <Property Name="description" Type="Edm.String"/>
       </EntityType>
+      <Association Name="CollaborationType_projects">
+        <End Role="CollaborationType" Type="CollaborationConfigureService.CollaborationType" Multiplicity="*"/>
+        <End Role="EnterpriseProjectRemote" Type="CollaborationConfigureService.EnterpriseProjectRemote" Multiplicity="*"/>
+      </Association>
+      <Association Name="CollaborationType_descriptions">
+        <End Role="CollaborationType" Type="CollaborationConfigureService.CollaborationType" Multiplicity="*"/>
+        <End Role="CollaborationTypeDesc" Type="CollaborationConfigureService.CollaborationTypeDesc" Multiplicity="*">
+          <OnDelete Action="Cascade"/>
+        </End>
+      </Association>
       <Association Name="CollaborationType_profile">
         <End Role="CollaborationType" Type="CollaborationConfigureService.CollaborationType" Multiplicity="*"/>
         <End Role="StatusProfile" Type="CollaborationConfigureService.StatusProfile" Multiplicity="0..1"/>
@@ -100,6 +141,14 @@
               </PropertyValue>
               <PropertyValue Property="Label" String="Collaboration Type"/>
             </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Projects"/>
+              <PropertyValue Property="Target" AnnotationPath="projects/@UI.LineItem#Project"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Label" String="Descriptions"/>
+              <PropertyValue Property="Target" AnnotationPath="descriptions/@UI.LineItem#Description"/>
+            </Record>
           </Collection>
         </Annotation>
         <Annotation Term="UI.FieldGroup" Qualifier="GeneralInfo">
@@ -115,6 +164,10 @@
                 <Record Type="UI.DataField">
                   <PropertyValue Property="Value" Path="state_state"/>
                   <PropertyValue Property="Label" String="State"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="ProfitCenter"/>
+                  <PropertyValue Property="Label" String="EPPM Profit Center"/>
                 </Record>
               </Collection>
             </PropertyValue>
@@ -231,6 +284,9 @@
         <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
         <Annotation Term="Common.Label" String="Collaboration Type title"/>
       </Annotations>
+      <Annotations Target="CollaborationConfigureService.CollaborationType/ProfitCenter" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Profit Center"/>
+      </Annotations>
       <Annotations Target="CollaborationConfigureService.CollaborationType/description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Common.Label" String="Collaboration Type Description3"/>
       </Annotations>
@@ -326,11 +382,47 @@
           </Record>
         </Annotation>
       </Annotations>
+      <Annotations Target="CollaborationConfigureService.CollaborationTypeDesc" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.LineItem" Qualifier="Description">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="lan"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="desc"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
       <Annotations Target="CollaborationConfigureService.CollaborationTypeState/state" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Common.Label" String="State"/>
       </Annotations>
       <Annotations Target="CollaborationConfigureService.CollaborationTypeState/description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Common.Label" String="StateDesc"/>
+      </Annotations>
+      <Annotations Target="CollaborationConfigureService.EnterpriseProjectRemote" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.LineItem" Qualifier="Project">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="Project"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="ProjectDescription"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="ProfitCenter"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CollaborationConfigureService.EnterpriseProjectRemote/ProfitCenter" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Profit Center"/>
+      </Annotations>
+      <Annotations Target="CollaborationConfigureService.EnterpriseProjectRemote/Project" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Project Number"/>
+      </Annotations>
+      <Annotations Target="CollaborationConfigureService.EnterpriseProjectRemote/ProjectDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="Project Desc"/>
       </Annotations>
     </Schema>
   </edmx:DataServices>
